@@ -8,31 +8,35 @@ class App extends Component {
     super();
 
     this.state = {
-      name: {firstName: "Aditya", lastName: "Wankhede"},
-      company: "XYZ Corp."
-    };
+      friends: [
+        { name: 'Aditya' },
+        { name: 'Subodh' },
+        { name: 'Rohan' },
+        { name: 'Soham' },
+        { name: 'Omkar' },
+        { name: 'Priyank' },
+        { name: 'Shannen' },
+        { name: 'Deep' },
+        { name: 'Anish' },
+        { name: 'Ayush' },
+        { name: 'Elsa' },
+        { name: 'Vaibhav' }
+      ]
+    }
+
+
   }
 
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Hi! My name is {this.state.name.firstName} {this.state.name.lastName}, I work at {this.state.company}
-          </p>
-          <button className='name-changer' onClick={() => {
-            this.setState(() => {
-              return {
-                name: {firstName: "Adam", lastName: "Cage"}
-              }
-            })
-          }}>Change Name</button>
-        </header>
+        {this.state.friends.map((friends) => {
+          return <div key={friends.name}><h1>{friends.name}</h1></div>
+        })}
       </div>
     );
   }
-  
+
 }
 
 export default App;
