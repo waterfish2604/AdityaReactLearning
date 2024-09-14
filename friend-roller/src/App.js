@@ -39,6 +39,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
+        <input className='search-bar'></input>
         {this.state.friends.map((friends) => {
           return <div key={friends.name}><h1>{friends.name}</h1></div>
         })}
