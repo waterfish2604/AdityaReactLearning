@@ -1,5 +1,4 @@
 import { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
@@ -8,20 +7,8 @@ class App extends Component {
     super();
 
     this.state = {
-      friends: [
-        { name: 'Aditya' },
-        { name: 'Subodh' },
-        { name: 'Rohan' },
-        { name: 'Soham' },
-        { name: 'Omkar' },
-        { name: 'Priyank' },
-        { name: 'Shannen' },
-        { name: 'Deep' },
-        { name: 'Anish' },
-        { name: 'Ayush' },
-        { name: 'Elsa' },
-        { name: 'Vaibhav' }
-      ]
+      friends: [],
+      searchedField: ''
     }
 
 
@@ -36,12 +23,26 @@ class App extends Component {
       ))
   }
 
+  onChangeSearch = (event)=>{
+    console.log(event.target.value);
+    const searchedField = event.target.value.toLowerCase();
+    this.setState(() => {
+      return {searchedField}
+    })
+  };
+
   render() {
+
+    const filteredFriends = this.state.friends.filter((friend) => {
+      return friend.name.toLowerCase().includes(this.state.searchedField.toLowerCase()); 
+    });
+
     return (
       <div className="App">
-        <input className='search-bar'></input>
-        {this.state.friends.map((friends) => {
-          return <div key={friends.name}><h1>{friends.name}</h1></div>
+        <input className='search-bar' placeholder='search friend' type='search' 
+        onChange={this.onChangeSearch}></input>
+        {filteredFriends.map((friend) => {
+          return <div key={friend.name}><h1>{friend.name}</h1></div>
         })}
       </div>
     );
