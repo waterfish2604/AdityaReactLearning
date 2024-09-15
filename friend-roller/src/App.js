@@ -1,5 +1,6 @@
 import { Component } from 'react';
-import { CardList } from './components/card-list/card-list'
+import CardList from './components/card-list/card-list';
+
 import './App.css';
 
 class App extends Component {
@@ -25,7 +26,7 @@ class App extends Component {
   }
 
   onChangeSearch = (event)=>{
-    console.log(event.target.value);
+    // console.log(event.target.value);
     const searchedField = event.target.value.toLowerCase();
     this.setState(() => {
       return {searchedField}
@@ -39,14 +40,12 @@ class App extends Component {
     });
 
     return (
-      // <div className="App">
-      //   <input className='search-bar' placeholder='search friend' type='search' 
-      //   onChange={this.onChangeSearch}></input>
-      //   {filteredFriends.map((friend) => {
-      //     return <div key={friend.name}><h1>{friend.name}</h1></div>
-      //   })}
-      // </div>
-      <CardList></CardList>
+      <div className="App">
+        <input className='search-bar' placeholder='search friend' type='search' 
+        onChange={this.onChangeSearch}></input>
+        <CardList friends={filteredFriends}></CardList>
+      </div>
+      // <CardList></CardList>
     );
   }
 
